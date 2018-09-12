@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Talent.Topper.UI.Models.BranchMasterEntity>
+
+@{
+    ViewBag.Title = "Talent Topper: Branch List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Branch Details</h2>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HOB)
+        </th>
+        <th style="width:150px;"> Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HOB)
+            </td>
+            <td>
+                @Html.ActionLink("Active", "Active", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Proceed", "Proceed", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
