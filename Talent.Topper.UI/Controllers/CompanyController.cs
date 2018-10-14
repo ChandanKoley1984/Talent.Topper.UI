@@ -9,7 +9,7 @@ using Talent.Topper.UI.Models;
 
 namespace Talent.Topper.UI.Controllers
 {
-    public class CompanyController : Controller
+    public class CompanyController : BaseController
     {
         // GET: Company
        
@@ -24,7 +24,6 @@ namespace Talent.Topper.UI.Controllers
         public ActionResult CompanyList(CompanyEntity CompanyEntity)
         {
            List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData();
-
             return View("CompanyDetails", _companyEntity);
         }
 
