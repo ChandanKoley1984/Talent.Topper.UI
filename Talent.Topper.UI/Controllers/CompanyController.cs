@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using Talent.Topper.UI.Helpers;
 using Talent.Topper.UI.Models;
 
 namespace Talent.Topper.UI.Controllers
@@ -10,26 +12,25 @@ namespace Talent.Topper.UI.Controllers
     public class CompanyController : Controller
     {
         // GET: Company
+       
         public ActionResult Index()
         {
             CompanyEntity _companyEntity = new CompanyEntity();
+            //Company Enity Render from database 
+
             return View(_companyEntity);
         }
         // GET: Company
-        public ActionResult CompanyList()
+        public ActionResult CompanyList(CompanyEntity CompanyEntity)
         {
-            List<CompanyEntity> _companyEntitys = new List<CompanyEntity>();
-            CompanyEntity _companyEntity;
-            for (int i=0;i<10;i++)
-            {
-                _companyEntity = new CompanyEntity();
-                _companyEntity.CompanayName = "Test";
-                _companyEntity.Email = "Test@test.com";
-                _companyEntity.WebsiteURL = "www.test.com";
-                _companyEntitys.Add(_companyEntity);
-            }
+           List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData();
 
-            return View("CompanyDetails", _companyEntitys);
+            return View("CompanyDetails", _companyEntity);
+        }
+
+        public ActionResult Save(CompanyEntity companyEntity)
+        {
+            return new EmptyResult();
         }
     }
 }
