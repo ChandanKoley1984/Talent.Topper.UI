@@ -22,5 +22,16 @@ namespace Talent.Topper.UI.Helpers
             }
             return listOfCompany;
         }
+        internal static bool SaveCompanyData(CompanyEntity companyEntity, bool saveStatus)
+        {
+            HttpClient client = Utility.NewClient();
+            HttpResponseMessage response = client.PostAsJsonAsync("api/AdminService/CreateCompany", companyEntity).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                saveStatus = JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return saveStatus;
+        }
     }
 }
