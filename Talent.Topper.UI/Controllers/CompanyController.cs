@@ -18,7 +18,15 @@ namespace Talent.Topper.UI.Controllers
         public ActionResult Index()
         {
             CompanyEntity _companyEntity = new CompanyEntity();
+            return View(_companyEntity);
+        }
+        public ActionResult Edit()
+        {
+            CompanyEntity _companyEntity = new CompanyEntity();
             //Company Enity Render from database 
+            int i = 0;
+            int j = 1;
+            j = j / i;
 
             return View(_companyEntity);
         }
@@ -29,12 +37,12 @@ namespace Talent.Topper.UI.Controllers
             List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData();
             return View("CompanyDetails", _companyEntity);
         }
-               
+
         public ActionResult Reset()
         {
             return RedirectToAction("Index");
         }
-       
+
         [HttpPost]
         [ActionName("Index")]
         [ValidateAntiForgeryToken]
@@ -42,9 +50,9 @@ namespace Talent.Topper.UI.Controllers
         {
             bool saveStatus = false;
             saveStatus = CompanyHelper.SaveCompanyData(companyEntity, saveStatus);
-            ViewBag.SaveStatus = saveStatus;            
+            ViewBag.SaveStatus = saveStatus;
             return View(companyEntity);
         }
-        
+
     }
 }

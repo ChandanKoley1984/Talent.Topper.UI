@@ -2,12 +2,19 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    @{
+        ViewBag.Title = "Error Occurred";
+    }
+
 </head>
 <body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+    <br />
+    <br />
+    <div style="text-align:center;padding-top:50px;">
+        <hgroup>
+            <h3>Error Occurred</h3>
+            <h4>An error occurred while processing your request.</h4>
+        </hgroup>
+    </div>
 </body>
 </html>
