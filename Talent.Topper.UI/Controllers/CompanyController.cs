@@ -29,8 +29,7 @@ namespace Talent.Topper.UI.Controllers
             List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData();
             return View("CompanyDetails", _companyEntity);
         }
-
-        [ChildActionOnly]
+               
         public ActionResult Reset()
         {
             return RedirectToAction("Index");

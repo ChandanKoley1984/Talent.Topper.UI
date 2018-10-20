@@ -17,8 +17,7 @@ namespace Talent.Topper.UI.Helpers
             HttpResponseMessage response = client.GetAsync("api/AdminService/GetCompany/" + companyid + "").Result;
             if (response.IsSuccessStatusCode)
             {
-                listOfCompany = JsonConvert.DeserializeObject<List<CompanyEntity>>(response.Content.ReadAsStringAsync().Result);
-                //JsonConvert.DeserializeObject<List<RetrieveMultipleResponse>>(JsonStr);
+                listOfCompany = JsonConvert.DeserializeObject<List<CompanyEntity>>(response.Content.ReadAsStringAsync().Result);                
             }
             return listOfCompany;
         }
