@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Talent.Topper.UI.Helpers;
 using Talent.Topper.UI.Models;
 
 namespace Talent.Topper.UI.Controllers
 {
-    public class BranchController : Controller
+    public class BranchController : BaseController
     {
         // GET: Branch
 
@@ -16,21 +17,30 @@ namespace Talent.Topper.UI.Controllers
             BranchMasterEntity _BranchMasterEntity = new BranchMasterEntity();
             return View(_BranchMasterEntity);
         }
-        // GET: Branch
+        
+
+        // GET: Company
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult BranchList()
         {
-            List<BranchMasterEntity> _BranchMasterEntitys = new List<BranchMasterEntity>();
-            BranchMasterEntity _BranchMasterEntity;
-            for (int i = 0; i < 10; i++)
-            {
-                _BranchMasterEntity = new BranchMasterEntity();
-                _BranchMasterEntity.CompanyID = 1;
-                _BranchMasterEntity.BranchName = "TestBranch";
-                _BranchMasterEntity.HOB = "Chandan";
-                _BranchMasterEntitys.Add(_BranchMasterEntity);
-            }
+            List<BranchMasterEntity> _branchEntity = BranchHelper.GetBranchData();
+            return View("BranchDetails", _branchEntity);
+        }
 
-            return View("BranchDetails", _BranchMasterEntitys);
+        public ActionResult Reset()
+        {
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(BranchMasterEntity branchEntity)
+        {
+            bool saveStatus = false;
+            saveStatus = BranchHelper.SaveBranchData(branchEntity, saveStatus);
+            ViewBag.SaveStatus = saveStatus;
+            return View(branchEntity);
         }
     }
 }
