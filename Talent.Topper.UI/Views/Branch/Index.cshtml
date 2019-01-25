@@ -6,6 +6,26 @@
 
 <u><h4 style="text-align:center;">Create Branch</h4></u>
 
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "Exemplo1",
+        Value = "Exemplo1"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Exemplo2",
+        Value = "Exemplo2",
+        Selected = true
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Exemplo3",
+        Value = "Exemplo3"
+    });
+}
+
 
 @using (Html.BeginForm())
 {
@@ -118,8 +138,10 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.CountryID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+
+                        @Html.DropDownList("CountryID", new SelectList(ViewBag.CountryList, "ID", "CountryName"), "-- Select Country --", htmlAttributes: new { @class = "form-control" })
+                                               
+
                     </div>
                 </div>
             </div>

@@ -175,11 +175,13 @@
     </Compile>
     <Compile Include="Helpers\BranchHelper.cs" />
     <Compile Include="Helpers\CompanyHelper.cs" />
+    <Compile Include="Helpers\CountryHelper.cs" />
     <Compile Include="Helpers\IDGenerationHelper.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Models\BranchMasterEntity.cs" />
     <Compile Include="Models\CompanyEntity.cs" />
+    <Compile Include="Models\CountryMasterEntity.cs" />
     <Compile Include="Models\DBFunctions.cs" />
     <Compile Include="Models\IDGeneration.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

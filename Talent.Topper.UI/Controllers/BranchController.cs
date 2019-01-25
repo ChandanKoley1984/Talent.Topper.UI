@@ -14,8 +14,15 @@ namespace Talent.Topper.UI.Controllers
 
         public ActionResult Index()
         {
+            //BranchMasterEntity _BranchMasterEntity = new BranchMasterEntity();
+            //return View(_BranchMasterEntity);
+
             BranchMasterEntity _BranchMasterEntity = new BranchMasterEntity();
-            return View(_BranchMasterEntity);
+            ViewBag.BranchDetails = _BranchMasterEntity;
+
+            ViewBag.CountryList = CountryHelper.GetCountryhData();
+
+            return View();
         }
         
 
