@@ -170,6 +170,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IDGenerationController.cs" />
+    <Compile Include="Controllers\StateByCountryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,12 +179,14 @@
     <Compile Include="Helpers\CountryHelper.cs" />
     <Compile Include="Helpers\IDGenerationHelper.cs" />
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\StateByCountryHelper.cs" />
     <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Models\BranchMasterEntity.cs" />
     <Compile Include="Models\CompanyEntity.cs" />
     <Compile Include="Models\CountryMasterEntity.cs" />
     <Compile Include="Models\DBFunctions.cs" />
     <Compile Include="Models\IDGeneration.cs" />
+    <Compile Include="Models\StateByCountryEntity.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -300,6 +303,7 @@
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Error\" />
+    <Folder Include="Views\StateByCountry\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

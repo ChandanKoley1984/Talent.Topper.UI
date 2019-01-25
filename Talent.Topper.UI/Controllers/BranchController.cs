@@ -20,7 +20,9 @@ namespace Talent.Topper.UI.Controllers
             BranchMasterEntity _BranchMasterEntity = new BranchMasterEntity();
             ViewBag.BranchDetails = _BranchMasterEntity;
 
-            ViewBag.CountryList = CountryHelper.GetCountryhData();
+            ViewBag.CountryList = CountryHelper.GetCountryData();
+             
+            ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
 
             return View();
         }
