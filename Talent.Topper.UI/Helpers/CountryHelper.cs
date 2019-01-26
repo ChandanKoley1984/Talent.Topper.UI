@@ -10,7 +10,7 @@ namespace Talent.Topper.UI.Helpers
 {
     public class CountryHelper
     {
-        internal static List<CountryMasterEntity> GetCountryhData(int Countryid = 0)
+        internal static List<CountryMasterEntity> GetCountryData(int Countryid = 0)
         {
             List<CountryMasterEntity> listOfCountry = new List<CountryMasterEntity>();
             HttpClient client = Utility.NewClient();
