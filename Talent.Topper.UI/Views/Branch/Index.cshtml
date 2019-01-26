@@ -106,8 +106,8 @@
                     @Html.LabelFor(model => model.StateID, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
 
-                        @Html.DropDownList("StateID", new SelectList(ViewBag.StateByCountryList, "ID", "StateName"), "-- Select State --", htmlAttributes: new { @class = "form-control" })
-
+                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList, "ID", "StateName") , "-- Select State --", new { @id = "StateID", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
 
                     </div>
                 </div>
@@ -120,8 +120,8 @@
                     @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
 
-                        @Html.DropDownList("CountryID", new SelectList(ViewBag.CountryList, "ID", "CountryName"), "-- Select Country --", htmlAttributes: new { @class = "form-control" })
-
+                        @Html.DropDownListFor(model => model.CountryID, new SelectList(ViewBag.CountryList, "ID", "CountryName"), "-- Select Country --", new { @id = "CountryID", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
 
                     </div>
                 </div>
@@ -129,10 +129,9 @@
             <div class="col-md-6">
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
+                        <input type="file" name="ImageFile" required /> 
                     </div>
                 </div>
 
@@ -169,8 +168,7 @@
         $('#CountryID').change(function () {
             $.getJSON('/StateByCountry/StateByCountryList/' + $('#CountryID').val(), function (data) {
                 var items = '<option>-- Select State --</option>';
-                $.each(data, function (i, state) {
-                    console.log(state);
+                $.each(data, function (i, state) {                    
                     items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
                 });
                 $('#StateID').html(items);

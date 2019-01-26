@@ -28,14 +28,15 @@ namespace Talent.Topper.UI.Models
         [Display(Name = "City")]
         public string City { get; set; }
         [Display(Name = "State")]
-        public int StateID { get; set; }
+        public string StateID { get; set; }
         [Display(Name = "Country")]
-        public int CountryID { get; set; }
+        public string CountryID { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public int? Status { get; set; }
         [Display(Name = "Branch Logo")]
-        public string Logo { get; set; }
+        public string ImagePath { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
         public string Password { get; set; }
     }
 }

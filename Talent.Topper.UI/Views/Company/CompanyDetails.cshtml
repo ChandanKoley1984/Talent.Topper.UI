@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Talent.Topper.UI.Models.CompanyEntity>
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/dataTable")
 @{
     ViewBag.Title = "Talent Topper: Company Creation";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +10,7 @@
 <br />
 <div class="form-horizontal">
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="CompanyListTbl">
             <thead>
                 <tr class="table-primary">
                     <th>
@@ -26,23 +27,43 @@
             </thead>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanayName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WebsiteURL)
-                </td>
-                <td>
-                    @Html.ActionLink("Active", "Active") |
-                    @Html.ActionLink("Proceed", "Proceed")
-                </td>
-            </tr>
-        }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanayName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WebsiteURL)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Active", "Active") |
+                        @Html.ActionLink("Proceed", "Proceed")
+                    </td>
+                </tr>
+            }
 
         </table>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ShortTable();
+    });
+
+    function ShortTable() {
+        $("#CompanyListTbl").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            dom: 'C<"clear">lfrtip',
+            colVis: {
+                exclude: [0]
+            }
+        });
+    }
+</script>

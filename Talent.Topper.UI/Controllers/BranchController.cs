@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,6 +48,26 @@ namespace Talent.Topper.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(BranchMasterEntity branchEntity)
         {
+            //Use Namespace called :  System.IO
+            string FileName = Path.GetFileNameWithoutExtension(branchEntity.ImageFile.FileName);
+
+            //To Get File Extension  
+            string FileExtension = Path.GetExtension(branchEntity.ImageFile.FileName);
+
+            //Add Current Date To Attached File Name  
+            FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
+
+            //Get Upload path from Web.Config file AppSettings.  
+            //string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
+
+            //Its Create complete path to store in server.  
+            branchEntity.ImagePath = Path.Combine(Server.MapPath("~/Content/BranchLogo"),
+                                       Path.GetFileName(FileName)); // UploadPath + FileName;
+
+            //To copy and save file into server.  
+            branchEntity.ImageFile.SaveAs(branchEntity.ImagePath);
+
+
             bool saveStatus = false;
             saveStatus = BranchHelper.SaveBranchData(branchEntity, saveStatus);
             ViewBag.SaveStatus = saveStatus;
