@@ -50,5 +50,8 @@ namespace Talent.Topper.UI.Models
         public string Password { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
+
+        [Display(Name = "Status")]
+        public int? IsActive { get; set; }
     }
 }
