@@ -56,7 +56,7 @@ namespace Talent.Topper.UI.Controllers
         public ActionResult SearchCompanyList(string name)
         {
             List<CompanyEntity> _companyEntity = CompanyHelper.SearchCompanyList(name);
-            return PartialView("CompanyDetails", _companyEntity);
+            return PartialView("CompanyDetailsFilter", _companyEntity);
         }
     }
 }

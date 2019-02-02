@@ -494,6 +494,7 @@
     <Content Include="Views\Branch\Index.cshtml" />
     <Content Include="Views\IDGeneration\Index.cshtml" />
     <Content Include="Views\IDGeneration\IDDetails.cshtml" />
+    <Content Include="Views\Company\CompanyDetailsFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
