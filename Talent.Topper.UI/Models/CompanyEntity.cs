@@ -36,10 +36,10 @@ namespace Talent.Topper.UI.Models
         public string CEOName { get; set; }
         
         [Display(Name = "Country")]
-        public int CountryID { get; set; }
+        public string CountryID { get; set; }
         
         [Display(Name = "State")]
-        public int StateID { get; set; }
+        public string StateID { get; set; }
         
         [Display(Name = "City")]
         public string City { get; set; }

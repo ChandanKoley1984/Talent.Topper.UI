@@ -32,5 +32,18 @@ namespace Talent.Topper.UI.Helpers
 
             return saveStatus;
         }
+
+        //search by name / email / website
+        internal static List<CompanyEntity> SearchCompanyList(string name)
+        {
+            List<CompanyEntity> listOfCompany = new List<CompanyEntity>();
+            HttpClient client = Utility.NewClient();
+            HttpResponseMessage response = client.GetAsync("api/AdminService/SearchCompanyList/" + name + "").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                listOfCompany = JsonConvert.DeserializeObject<List<CompanyEntity>>(response.Content.ReadAsStringAsync().Result);
+            }
+            return listOfCompany;
+        }
     }
 }

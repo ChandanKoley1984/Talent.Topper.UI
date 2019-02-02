@@ -53,6 +53,10 @@ namespace Talent.Topper.UI.Controllers
             ViewBag.SaveStatus = saveStatus;
             return View(companyEntity);
         }
-
+        public ActionResult SearchCompanyList(string name)
+        {
+            List<CompanyEntity> _companyEntity = CompanyHelper.SearchCompanyList(name);
+            return PartialView("CompanyDetails", _companyEntity);
+        }
     }
 }
