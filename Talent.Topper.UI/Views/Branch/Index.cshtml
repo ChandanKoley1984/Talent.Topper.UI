@@ -106,7 +106,8 @@
                     @Html.LabelFor(model => model.StateID, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
 
-                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList, "ID", "StateName") , "-- Select State --", new { @id = "StateID", @class = "form-control" })
+                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList ,"ID","StateName"), "-- Select State --", new { @id = "StateID", @class = "form-control" })
+                         @*@Html.DropDownListFor(model => model.StateID, (IEnumerable<SelectListItem>)ViewBag.Campaign)*@
                         @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
 
                     </div>

@@ -23,12 +23,12 @@ namespace Talent.Topper.UI.Controllers
             ViewBag.BranchDetails = _BranchMasterEntity;
 
             ViewBag.CountryList = CountryHelper.GetCountryData();
-             
+
             ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
 
             return View();
         }
-        
+
 
         // GET: Company
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
@@ -48,29 +48,38 @@ namespace Talent.Topper.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(BranchMasterEntity branchEntity)
         {
-            //Use Namespace called :  System.IO
-            string FileName = Path.GetFileNameWithoutExtension(branchEntity.ImageFile.FileName);
+            ViewBag.BranchDetails = new BranchMasterEntity();
 
-            //To Get File Extension  
-            string FileExtension = Path.GetExtension(branchEntity.ImageFile.FileName);
+            ViewBag.CountryList = CountryHelper.GetCountryData();
+            ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
 
-            //Add Current Date To Attached File Name  
-            FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
+            if (ModelState.IsValid)
+            {
+                //Use Namespace called :  System.IO
+                string FileName = Path.GetFileNameWithoutExtension(branchEntity.ImageFile.FileName);
 
-            //Get Upload path from Web.Config file AppSettings.  
-            //string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
+                //To Get File Extension  
+                string FileExtension = Path.GetExtension(branchEntity.ImageFile.FileName);
 
-            //Its Create complete path to store in server.  
-            branchEntity.ImagePath = Path.Combine(Server.MapPath("~/Content/BranchLogo"),
-                                       Path.GetFileName(FileName)); // UploadPath + FileName;
+                //Add Current Date To Attached File Name  
+                FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
 
-            //To copy and save file into server.  
-            branchEntity.ImageFile.SaveAs(branchEntity.ImagePath);
+                //Get Upload path from Web.Config file AppSettings.  
+                //string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
+
+                //Its Create complete path to store in server.  
+                branchEntity.ImagePath = Path.Combine(Server.MapPath("~/Content/BranchLogo"),
+                                           Path.GetFileName(FileName)); // UploadPath + FileName;
+
+                //To copy and save file into server.  
+                branchEntity.ImageFile.SaveAs(branchEntity.ImagePath);
 
 
-            bool saveStatus = false;
-            saveStatus = BranchHelper.SaveBranchData(branchEntity, saveStatus);
-            ViewBag.SaveStatus = saveStatus;
+                bool saveStatus = false;
+                saveStatus = BranchHelper.SaveBranchData(branchEntity, saveStatus);
+                ViewBag.SaveStatus = saveStatus;
+            }
+
             return View(branchEntity);
         }
     }

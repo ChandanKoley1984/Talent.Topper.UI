@@ -13,7 +13,7 @@ namespace Talent.Topper.UI.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            ModelStateValidations(filterContext);
+            //ModelStateValidations(filterContext);
             base.OnActionExecuting(filterContext);
         }       
 
@@ -34,18 +34,18 @@ namespace Talent.Topper.UI.Controllers
             //logger.WriteLog(exception.Message);
         }
 
-        private static void ModelStateValidations(ActionExecutingContext filterContext)
-        {
-            var viewData = filterContext.Controller.ViewData;
+        //private static void ModelStateValidations(ActionExecutingContext filterContext)
+        //{
+        //    var viewData = filterContext.Controller.ViewData;
 
-            if (!viewData.ModelState.IsValid)
-            {
-                filterContext.Result = new ViewResult
-                {
-                    ViewData = viewData,
-                    TempData = filterContext.Controller.TempData
-                };
-            }
-        }
+        //    //if (!viewData.ModelState.IsValid)
+        //    //{
+        //    //    filterContext.Result = new ViewResult
+        //    //    {
+        //    //        ViewData = viewData,
+        //    //        TempData = filterContext.Controller.TempData
+        //    //    };
+        //    //}
+        //}
     }
 }
