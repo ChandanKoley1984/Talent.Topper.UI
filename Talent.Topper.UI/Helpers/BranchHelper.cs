@@ -10,11 +10,11 @@ namespace Talent.Topper.UI.Helpers
 {
     public static class BranchHelper
     {
-        internal static List<BranchMasterEntity> GetBranchData(int branchid = 0)
+        internal static List<BranchMasterEntity> GetBranchData(string id = "GetAll")
         {
             List<BranchMasterEntity> listOfBranch = new List<BranchMasterEntity>();
             HttpClient client = Utility.NewClient();
-            HttpResponseMessage response = client.GetAsync("api/AdminService/GetBranch/" + branchid + "").Result;
+            HttpResponseMessage response = client.GetAsync("api/AdminService/GetBranch/" + id + "").Result;
             if (response.IsSuccessStatusCode)
             {
                 listOfBranch = JsonConvert.DeserializeObject<List<BranchMasterEntity>>(response.Content.ReadAsStringAsync().Result);
@@ -26,6 +26,17 @@ namespace Talent.Topper.UI.Helpers
         {
             HttpClient client = Utility.NewClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/AdminService/CreateBranch", branchEntity).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                saveStatus = JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
+            }
+
+            return saveStatus;
+        }
+        internal static bool EditBranchData(BranchMasterEntity branchEntity, bool saveStatus)
+        {
+            HttpClient client = Utility.NewClient();
+            HttpResponseMessage response = client.PostAsJsonAsync("api/AdminService/EditBranch", branchEntity).Result;
             if (response.IsSuccessStatusCode)
             {
                 saveStatus = JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);

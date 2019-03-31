@@ -8,6 +8,7 @@ namespace Talent.Topper.UI.Models
 {
     public class BranchMasterEntity
     {
+        public string id { get; set; }
         [Required]
         [Display(Name = "Companay Name")]
         public int CompanyID { get; set; }

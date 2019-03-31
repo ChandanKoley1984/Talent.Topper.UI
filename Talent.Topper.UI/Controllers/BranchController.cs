@@ -82,5 +82,15 @@ namespace Talent.Topper.UI.Controllers
 
             return View(branchEntity);
         }
+
+        public ActionResult Edit(string id)
+        {
+
+            ViewBag.BranchDetails = new BranchMasterEntity();
+            ViewBag.CountryList = CountryHelper.GetCountryData();
+            ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
+            List<BranchMasterEntity> _branchEntity = BranchHelper.GetBranchData(id);
+            return View(new BranchMasterEntity());
+        }
     }
 }

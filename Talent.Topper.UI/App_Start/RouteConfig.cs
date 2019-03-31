@@ -16,7 +16,7 @@ namespace Talent.Topper.UI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Company", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "branch", action = "BranchList", id = UrlParameter.Optional }
             );
         }
     }
