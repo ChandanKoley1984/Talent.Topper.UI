@@ -82,15 +82,54 @@ namespace Talent.Topper.UI.Controllers
 
             return View(branchEntity);
         }
+        [HttpPost]
+        public ActionResult EditDetails(BranchMasterEntity branchEntity)
+        {
+            ViewBag.BranchDetails = new BranchMasterEntity();
 
-        public ActionResult Edit(string id)
+            ViewBag.CountryList = CountryHelper.GetCountryData();
+            ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
+
+            if (ModelState.IsValid)
+            {
+                //Use Namespace called :  System.IO
+                //string FileName = Path.GetFileNameWithoutExtension(branchEntity.ImageFile.FileName);
+
+                ////To Get File Extension  
+                //string FileExtension = Path.GetExtension(branchEntity.ImageFile.FileName);
+
+                ////Add Current Date To Attached File Name  
+                //FileName = DateTime.Now.ToString("yyyyMMdd") + "-" + FileName.Trim() + FileExtension;
+
+                ////Get Upload path from Web.Config file AppSettings.  
+                ////string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
+
+                ////Its Create complete path to store in server.  
+                //branchEntity.ImagePath = Path.Combine(Server.MapPath("~/Content/BranchLogo"),
+                //                           Path.GetFileName(FileName)); // UploadPath + FileName;
+
+                ////To copy and save file into server.  
+                //branchEntity.ImageFile.SaveAs(branchEntity.ImagePath);
+
+
+                bool saveStatus = false;
+                saveStatus = BranchHelper.EditBranchData(branchEntity, saveStatus);
+                ViewBag.SaveStatus = saveStatus;
+            }
+
+            return View(branchEntity);
+        }
+
+        [HttpGet]
+        public ActionResult EditDetails(string id)
         {
 
             ViewBag.BranchDetails = new BranchMasterEntity();
             ViewBag.CountryList = CountryHelper.GetCountryData();
             ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
             List<BranchMasterEntity> _branchEntity = BranchHelper.GetBranchData(id);
-            return View(new BranchMasterEntity());
+            return View("Index", _branchEntity.FirstOrDefault());
         }
+
     }
 }
