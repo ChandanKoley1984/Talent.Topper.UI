@@ -8,6 +8,7 @@ namespace Talent.Topper.UI.Models
 {
     public class CompanyEntity
     {
+        public int CompanyId { get; set; }
         [Required]
         [Display(Name = "Companay Name")]
         public string CompanayName { get; set; }
@@ -52,6 +53,6 @@ namespace Talent.Topper.UI.Models
         public DateTime CreatedOn { get; set; }
 
         [Display(Name = "Status")]
-        public int? IsActive { get; set; }
+        public bool? IsActive { get; set; }
     }
 }

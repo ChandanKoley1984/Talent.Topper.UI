@@ -8,16 +8,16 @@
 <u><h4 style="text-align:center;">Create Company</h4></u>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Save", "Company"))
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model=>model.CompanyId)
     <div class="form-horizontal">
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        @if (ViewBag.SaveStatus != null && ViewBag.SaveStatus==true)
+
+        @if (ViewBag.SaveStatus != null && ViewBag.SaveStatus == true)
         {
             <div class="alert alert-success">
                 <strong>Success!</strong> Company has been successfully created.
@@ -184,10 +184,10 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <div class="col-md-offset-7 col-md-5">                                          
+                    <div class="col-md-offset-7 col-md-5">
                         <input type="submit" value="Save" class="btn  btn-primary" />
                         @Html.ActionLink("Reset", "Reset", "Company", new { @class = "btn btn-default" })
-                        
+
                     </div>
                 </div>
             </div>

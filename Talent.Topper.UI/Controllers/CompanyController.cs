@@ -20,15 +20,11 @@ namespace Talent.Topper.UI.Controllers
             CompanyEntity _companyEntity = new CompanyEntity();
             return View(_companyEntity);
         }
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            CompanyEntity _companyEntity = new CompanyEntity();
-            //Company Enity Render from database 
-            int i = 0;
-            int j = 1;
-            j = j / i;
+            List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData(id);
 
-            return View(_companyEntity);
+            return View("index",_companyEntity.FirstOrDefault());
         }
         // GET: Company
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
@@ -43,8 +39,7 @@ namespace Talent.Topper.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [ActionName("Index")]
+        [HttpPost]        
         [ValidateAntiForgeryToken]
         public ActionResult Save(CompanyEntity companyEntity)
         {
