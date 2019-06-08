@@ -21,16 +21,22 @@ namespace Talent.Topper.UI.Helpers
             }
             return listOfCompany;
         }
-        internal static bool SaveCompanyData(CompanyEntity companyEntity, bool saveStatus)
+        internal static CompanyEntity SaveCompanyData(CompanyEntity companyEntity, out bool saveStatus)
         {
+            CompanyEntity _companyEntity = new CompanyEntity();
             HttpClient client = Utility.NewClient();
             HttpResponseMessage response = client.PostAsJsonAsync("api/Company/CreateCompany", companyEntity).Result;
             if (response.IsSuccessStatusCode)
             {
-                saveStatus = JsonConvert.DeserializeObject<bool>(response.Content.ReadAsStringAsync().Result);
+                _companyEntity = JsonConvert.DeserializeObject<CompanyEntity>(response.Content.ReadAsStringAsync().Result);
+                saveStatus = true;
+            }
+            else
+            {
+                saveStatus = false;
             }
 
-            return saveStatus;
+            return _companyEntity;
         }
 
         //search by name / email / website

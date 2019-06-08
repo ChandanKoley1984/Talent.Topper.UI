@@ -43,10 +43,10 @@ namespace Talent.Topper.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(CompanyEntity companyEntity)
         {
-            bool saveStatus = false;
-            saveStatus = CompanyHelper.SaveCompanyData(companyEntity, saveStatus);
+            bool saveStatus;
+            companyEntity = CompanyHelper.SaveCompanyData(companyEntity, out saveStatus);
             ViewBag.SaveStatus = saveStatus;
-            return View(companyEntity);
+            return View("Index",companyEntity);
         }
         public ActionResult SearchCompanyList(string name)
         {
