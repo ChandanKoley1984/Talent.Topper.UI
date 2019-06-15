@@ -12,7 +12,7 @@ namespace Talent.Topper.UI.Models
         public string ID { get; set; }
 
         [Display(Name = "Country Name")]
-        public string CountryName { get; set; }
+        public string Name { get; set; }
 
         public DateTime? CreateDate { get; set; }
 

@@ -18,7 +18,13 @@ namespace Talent.Topper.UI.Controllers
         public ActionResult Index()
         {
             CompanyEntity _companyEntity = new CompanyEntity();
-            return View(_companyEntity);
+            ViewBag.companyDetails = _companyEntity;
+
+            ViewBag.CountryList = CountryHelper.GetCountryData();
+
+            ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
+
+            return View();
         }
         public ActionResult Edit(int id)
         {

@@ -14,7 +14,7 @@ namespace Talent.Topper.UI.Helpers
         {
             List<StateByCountryEntity> listOfStateByCountry = new List<StateByCountryEntity>();
             HttpClient client = Utility.NewClient();
-            HttpResponseMessage response = client.GetAsync("api/AdminService/GetStateByCountry/" + CountryId + "").Result;
+            HttpResponseMessage response = client.GetAsync("api/getStateList/" + CountryId + "").Result;
             if (response.IsSuccessStatusCode)
             {
                 listOfStateByCountry = JsonConvert.DeserializeObject<List<StateByCountryEntity>>(response.Content.ReadAsStringAsync().Result);
