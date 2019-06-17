@@ -131,7 +131,7 @@
                         @*@Html.EditorFor(model => model.CountryID, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })*@
 
-                        @Html.DropDownListFor(model => model.CountryID, new SelectList(ViewBag.CountryList, "ID", "NAME"), "-- Select Country --", new { @id = "ID", @class = "form-control" })
+                        @Html.DropDownListFor(model => model.CountryID, new SelectList(ViewBag.CountryList, "ID", "NAME"), "-- Select Country --", new { @id = "CountryID", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -204,15 +204,38 @@
 
 @Scripts.Render("~/bundles/jquery")
 <script type="text/jscript">
-    $(function () {
+    $(function () {      
         $('#CountryID').change(function () {
-            $.getJSON('/getStateList/' + $('#CountryID').val(), function (data) {
-                var items = '<option>-- Select State --</option>';
-                $.each(data, function (i, state) {
-                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
-                });
-                $('#StateID').html(items);
+            var StateID = $('#StateID');
+            StateID.empty();
+            StateID.append($("<option></option>").val('').html('Please wait ...'));
+
+           
+            $.ajax({
+                url: 'http://localhost:64243/api/getStateList/' + $('#CountryID').val(),
+                type: 'GET',
+                dataType: 'json',
+                data: { },
+                success: function (d) {
+
+                    StateID.empty(); // Clear the please wait  
+                    StateID.append($("<option></option>").val('').html('Select State'));
+                    $.each(d, function (i, states) {
+                        StateID.append($("<option></option>").val(states.ID).html(states.NAME));
+                    });
+                },
+                error: function () {
+                    alert('Error!');
+                }
             });
+
+            //$.getJSON('http://localhost:64243/api/getStateList/' + $('#CountryID').val(), function (data) {
+            //    var items = '<option>-- Select State --</option>';
+            //    $.each(data, function (i, state) {
+            //        items += "<option value='" + state.ID + "'>" + state.NAME + "</option>";
+            //    });
+            //    $('#StateID').html(items);
+            //});
         });
     });
 </script>
