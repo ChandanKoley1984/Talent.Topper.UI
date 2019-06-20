@@ -6,12 +6,27 @@ using System.Web;
 
 namespace Talent.Topper.UI.Models
 {
+    public partial class CompanyList
+    {
+        public long ID { get; set; }
+        public string CompanyName { get; set; }
+        public string CEOName { get; set; }
+        public string WebsiteUrl { get; set; }
+        public string LogoPath { get; set; }
+        public Nullable<long> Contact_Id { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public Nullable<int> UpdatedBy { get; set; }
+        public string CompanyType { get; set; }
+    }
     public class CompanyEntity
     {
         public int CompanyId { get; set; }
         [Required]
         [Display(Name = "Companay Name")]
-        public string CompanayName { get; set; }
+        public string CompanyName { get; set; }
         [Required]
         [Display(Name = "Full Address")]
         public string FullAddress { get; set; }

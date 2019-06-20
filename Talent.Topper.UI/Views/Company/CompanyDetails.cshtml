@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Talent.Topper.UI.Models.CompanyEntity>
+﻿@model IEnumerable<Talent.Topper.UI.Models.CompanyList>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/dataTable")
 @{
@@ -32,13 +32,10 @@
             <thead>
                 <tr class="table-primary">
                     <th>
-                        @Html.DisplayNameFor(model => model.CompanayName)
-                    </th>
+                        @Html.DisplayNameFor(model => model.CompanyName)
+                    </th>                    
                     <th>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.WebsiteURL)
+                        @Html.DisplayNameFor(model => model.WebsiteUrl)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.IsActive)
@@ -51,13 +48,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CompanayName)
-                    </td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>                   
                     <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.WebsiteURL)
+                        @Html.DisplayFor(modelItem => item.WebsiteUrl)
                     </td>
                     <td>
                         @*@Html.DisplayFor(modelItem => item.IsActive)*@
@@ -67,7 +61,7 @@
                         @Html.ActionLink("Proceed", "Proceed")
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.CompanyId }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                         @Html.ActionLink("Delete", "Delete")
                     </td>
                 </tr>
