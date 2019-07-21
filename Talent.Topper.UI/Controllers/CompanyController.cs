@@ -49,7 +49,13 @@ namespace Talent.Topper.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(CompanyEntity companyEntity)
         {
+            ViewBag.CountryList = CountryHelper.GetCountryData();
+            ViewBag.StateByCountryList = StateByCountryHelper.GetStateByCountryData("0");
+
             bool saveStatus;
+            companyEntity.IsActive = true;
+            companyEntity.CreatedOn = DateTime.Now;
+            companyEntity.CreatedBy = 1;
             companyEntity = CompanyHelper.SaveCompanyData(companyEntity, out saveStatus);
             ViewBag.SaveStatus = saveStatus;
             return View("Index",companyEntity);
