@@ -28,7 +28,7 @@ namespace Talent.Topper.UI.Controllers
         }
         public ActionResult Edit(int id)
         {
-            List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData(id);
+            List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyEditData(id);
 
             return View("index",_companyEntity.FirstOrDefault());
         }
@@ -36,7 +36,7 @@ namespace Talent.Topper.UI.Controllers
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult CompanyList()
         {
-            List<CompanyEntity> _companyEntity = CompanyHelper.GetCompanyData();
+            List<CompanyList> _companyEntity = CompanyHelper.GetCompanyListData();
             return View("CompanyDetails", _companyEntity);
         }
 

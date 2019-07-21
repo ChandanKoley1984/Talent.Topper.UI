@@ -10,14 +10,25 @@ namespace Talent.Topper.UI.Helpers
 {
     public static class CompanyHelper
     {
-        internal static List<CompanyEntity> GetCompanyData(int? companyid = null)
+        internal static List<CompanyList> GetCompanyListData(int? companyid = null)
         {
-            List<CompanyEntity> listOfCompany = new List<CompanyEntity>();
+            List<CompanyList> listOfCompany = new List<CompanyList>();
             HttpClient client = Utility.NewClient();
             HttpResponseMessage response = client.GetAsync("api/Company/GetCompanies/"+ companyid).Result;
             if (response.IsSuccessStatusCode)
             {
-                listOfCompany = JsonConvert.DeserializeObject<List<CompanyEntity>>(response.Content.ReadAsStringAsync().Result);                
+                listOfCompany = JsonConvert.DeserializeObject<List<CompanyList>>(response.Content.ReadAsStringAsync().Result);                
+            }
+            return listOfCompany;
+        }
+        internal static List<CompanyEntity> GetCompanyEditData(int? companyid = null)
+        {
+            List<CompanyEntity> listOfCompany = new List<CompanyEntity>();
+            HttpClient client = Utility.NewClient();
+            HttpResponseMessage response = client.GetAsync("api/Company/GetCompaniesEdit/" + companyid).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                listOfCompany = JsonConvert.DeserializeObject<List<CompanyEntity>>(response.Content.ReadAsStringAsync().Result);
             }
             return listOfCompany;
         }
