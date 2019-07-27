@@ -108,7 +108,13 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input type="file" name="file_Uploader" id="f_Uploadfile" />
+                        <div class="col-lg-8 removespace" style="padding-top: 20px">
+                            <div class="col-lg-9 removespace">
+                                <img id="selectimg" width="150" height="100" style="display: none;" />
+                            </div>
+                        </div>
                         @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -196,12 +202,27 @@
                 </div>
             </div>
         </div>
-
+        <input type="hidden" id="LogoPath" />
     </div>
 }
 
 @Scripts.Render("~/bundles/jquery")
 <script type="text/jscript">
+
+    $("#f_Uploadfile").on('change', function () {
+        readURL(this);
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#selectimg").attr("src", e.target.result);
+                $("#selectimg").show();
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     $(function () {      
         $('#CountryID').change(function () {
             var StateID = $('#StateID');

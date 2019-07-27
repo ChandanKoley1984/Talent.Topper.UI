@@ -45,7 +45,7 @@ namespace Talent.Topper.UI.Models
         
         [Display(Name = "Website URL")]
         public string WebsiteURL { get; set; }
-        
+        [Display(Name = "Company Logo")]
         public string Logo { get; set; }
         
         [Display(Name = "CEO Name")]
