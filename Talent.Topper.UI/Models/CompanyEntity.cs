@@ -19,55 +19,60 @@ namespace Talent.Topper.UI.Models
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
-        public string CompanyType { get; set; }
     }
     public class CompanyEntity
     {
-        public int CompanyId { get; set; }
+        public long ID { get; set; }
+
         [Required]
         [Display(Name = "Companay Name")]
         public string CompanyName { get; set; }
-        [Required]
-        [Display(Name = "Full Address")]
-        public string FullAddress { get; set; }
-        [Required]
-        [Display(Name = "Country Code")]
-        public string CountryCode { get; set; }
-        
-        [Display(Name = "Mobile")]
-        public string MobileNo { get; set; }
-        
-        [Display(Name = "Phone")]
-        public string PhoneNo { get; set; }
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-        
-        [Display(Name = "Website URL")]
-        public string WebsiteURL { get; set; }
-        
-        public string Logo { get; set; }
-        
+
         [Display(Name = "CEO Name")]
         public string CEOName { get; set; }
-        
-        [Display(Name = "Country")]
-        public string CountryID { get; set; }
-        
-        [Display(Name = "State")]
-        public string StateID { get; set; }
-        
-        [Display(Name = "City")]
-        public string City { get; set; }
-        
-        [Display(Name = "Comapany Type")]
-        public string ComapanyType { get; set; }       
-        
-        public string Password { get; set; }
-        public int CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
+
+        [Display(Name = "Website URL")]
+        public string WebsiteUrl { get; set; }
+
+        public string LogoPath { get; set; }
 
         [Display(Name = "Status")]
         public bool? IsActive { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        [Display(Name = "Comapany Type")]
+        public string CompanyType { get; set; }
+
+        public int RoleId { get; set; }
+
+        [Display(Name = "Mobile")]
+        public string MobileNo { get; set; }
+
+        [Display(Name = "Phone")]
+        public string PhoneNo { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        [Required]
+        [Display(Name = "Full Address")]
+        public string addressline { get; set; }
+
+        [Display(Name = "Country")]
+        public int CountryID { get; set; }
+
+        [Display(Name = "State")]
+        public int StateID { get; set; }
+
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        public int is_default { get; set; }
     }
 }

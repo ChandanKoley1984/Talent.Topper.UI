@@ -54,8 +54,10 @@ namespace Talent.Topper.UI.Controllers
 
             bool saveStatus;
             companyEntity.IsActive = true;
-            companyEntity.CreatedOn = DateTime.Now;
+            companyEntity.CreatedDate = DateTime.Now;
             companyEntity.CreatedBy = 1;
+            companyEntity.is_default = 1;
+
             companyEntity = CompanyHelper.SaveCompanyData(companyEntity, out saveStatus);
             ViewBag.SaveStatus = saveStatus;
             return View("Index",companyEntity);
