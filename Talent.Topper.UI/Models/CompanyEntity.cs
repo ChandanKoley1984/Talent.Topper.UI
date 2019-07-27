@@ -33,7 +33,7 @@ namespace Talent.Topper.UI.Models
 
         [Display(Name = "Website URL")]
         public string WebsiteUrl { get; set; }
-
+        [Display(Name = "Compeny Logo")]
         public string LogoPath { get; set; }
 
         [Display(Name = "Status")]
