@@ -10,6 +10,11 @@
 
 @using (Html.BeginForm("Save", "Company"))
 {
+    <script type="text/jscript">
+    if ($('#f_Uploadfile')[0].files[0] != undefined) {
+        sendFile();
+    }
+    </script>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model=>model.ID)
     <div class="form-horizontal">
@@ -106,9 +111,9 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @*@Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-4" })*@
                     <div class="col-md-8">
-                        @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.EditorFor(model => model.LogoPath, new { htmlAttributes = new { @class = "form-control" } })
                         <input type="file" name="file_Uploader" id="f_Uploadfile" />
                         <div class="col-lg-8 removespace" style="padding-top: 20px">
                             <div class="col-lg-9 removespace">
@@ -140,7 +145,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-8">                     
+                    <div class="col-md-8">
 
                         @Html.DropDownListFor(model => model.CountryID, new SelectList(ViewBag.CountryList, "ID", "NAME"), "-- Select Country --", new { @id = "CountryID", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
@@ -157,7 +162,7 @@
                         @*@Html.EditorFor(model => model.StateID, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })*@
 
-                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList, "ID", "StateName"), "-- Select State --", new { @id = "StateID", @class = "form-control" })                   
+                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList, "ID", "StateName"), "-- Select State --", new { @id = "StateID", @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -209,19 +214,21 @@
                 </div>
             </div>
         </div>
-
+        <input type="hidden" id="LogoPath" />
+        @*@Html.EditorFor(model => model.Logo, new { htmlAttributes = new { @class = "form-control" } })*@
+        <input type="hidden" id="OldLogoPath" />
     </div>
 }
 
 @Scripts.Render("~/bundles/jquery")
 <script type="text/jscript">
-    $(function () {      
+    $(function () {
         $('#CountryID').change(function () {
             var StateID = $('#StateID');
             StateID.empty();
             StateID.append($("<option></option>").val('').html('Please wait ...'));
 
-           
+
             $.ajax({
                 url: 'http://localhost:64243/api/getStateList/' + $('#CountryID').val(),
                 type: 'GET',
@@ -229,7 +236,7 @@
                 data: { },
                 success: function (d) {
 
-                    StateID.empty(); // Clear the please wait  
+                    StateID.empty(); // Clear the please wait
                     StateID.append($("<option></option>").val('').html('Select State'));
                     $.each(d, function (i, states) {
                         StateID.append($("<option></option>").val(states.ID).html(states.NAME));
@@ -254,6 +261,29 @@
         readURL(this);
     });
 
+    function sendFile() {
+
+        var formData = new FormData();
+        formData.append('file', $('#f_Uploadfile')[0].files[0]);
+        $.ajax({
+            type: 'post',
+            url: 'ImageUploadhandler/CompanyLogo.ashx',
+            data: formData,
+            success: function (status) {
+                if (status != 'error') {
+                    $("#LogoPath").val("CompanyLogo/" + status); // id comming from html page  
+                    alert($("#LogoPath").val());
+                }
+            },
+            processData: false,
+            contentType: false,
+            error: function () {
+                alert("Error saving image");
+            }
+        });
+    }
+
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -265,4 +295,4 @@
         }
     }
 
-</script>
+    </script>

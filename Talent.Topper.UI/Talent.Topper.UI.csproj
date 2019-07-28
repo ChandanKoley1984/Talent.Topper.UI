@@ -181,6 +181,9 @@
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\StateByCountryHelper.cs" />
     <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="ImageUploadhandler\CompanyLogo.ashx.cs">
+      <DependentUpon>CompanyLogo.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Models\BranchMasterEntity.cs" />
     <Compile Include="Models\CompanyEntity.cs" />
     <Compile Include="Models\CountryMasterEntity.cs" />
@@ -273,6 +276,7 @@
     <Content Include="Scripts\datatables\extensions\TableTools\images\psd\file_types.psd" />
     <Content Include="Scripts\datatables\extensions\TableTools\images\psd\printer.psd" />
     <Content Include="Scripts\datatables\extensions\TableTools\Readme.md" />
+    <Content Include="ImageUploadhandler\CompanyLogo.ashx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datatables\dataTables.bootstrap.css" />
     <Content Include="Scripts\datatables\dataTables.bootstrap.js" />
@@ -498,6 +502,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CompanyLogo\" />
     <Folder Include="Content\BranchLogo\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Base\" />
