@@ -74,5 +74,6 @@ namespace Talent.Topper.UI.Models
         public string City { get; set; }
 
         public int is_default { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }
