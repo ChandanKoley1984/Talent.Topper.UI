@@ -11,12 +11,12 @@
 @using (Html.BeginForm("Save", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @*<script type="text/jscript">
-    if ($('#f_Uploadfile')[0].files[0] != undefined) {
-        sendFile();
-    }
-    </script>*@
+        if ($('#f_Uploadfile')[0].files[0] != undefined) {
+            sendFile();
+        }
+        </script>*@
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model=>model.ID)
+    @Html.HiddenFor(model => model.ID)
     <div class="form-horizontal">
 
         <hr />
@@ -68,17 +68,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -91,6 +80,16 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.WebsiteUrl, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -100,16 +99,43 @@
                     </div>
                 </div>
             </div>
+
+
+
+        </div>
+        <div class="col-md-12">
+
             <div class="col-md-6">
                 <div class="form-group">
                     @Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-8">                    
+                    <div class="col-md-8">
                         <input type="file" name="ImageFile" />
-                       
+
                         @Html.ValidationMessageFor(model => model.LogoPath, "", new { @class = "text-danger" })
                     </div>
-                </div>              
+                </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CompanyType, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @*@Html.EditorFor(model => model.CompanyType, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CompanyType, "", new { @class = "text-danger" })*@
+
+                        <label>
+                            @Html.RadioButtonFor(model => model.CompanyType, "Private")
+                            Private
+                        </label>
+
+                        <label>
+                            @Html.RadioButtonFor(model => model.CompanyType, "Public")
+                            Public
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-12">
             <div class="col-md-6">
@@ -134,19 +160,6 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-6">
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.StateID, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-8">
-                        @*@Html.EditorFor(model => model.StateID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })*@
-
-                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList, "ID", "StateName"), "-- Select State --", new { @id = "StateID", @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
                 <div class="form-group">
                     @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
@@ -156,18 +169,24 @@
                 </div>
 
             </div>
-        </div>
-
-        <div class="col-md-12">
             <div class="col-md-6">
+
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CompanyType, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.LabelFor(model => model.StateID, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-8">
-                        @Html.EditorFor(model => model.CompanyType, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CompanyType, "", new { @class = "text-danger" })
+                        @*@Html.EditorFor(model => model.StateID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })*@
+
+                        @Html.DropDownListFor(model => model.StateID, new SelectList(ViewBag.StateByCountryList, "ID", "StateName"), "-- Select State --", new { @id = "StateID", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.StateID, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
+
+        </div>
+
+        <div class="col-md-12">
+
             <div class="col-md-6">
 
                 <div class="form-group">
@@ -209,7 +228,7 @@
                 url: 'http://localhost:64243/api/getStateList/' + $('#CountryID').val(),
                 type: 'GET',
                 dataType: 'json',
-                data: { },
+                data: {},
                 success: function (d) {
 
                     StateID.empty(); // Clear the please wait
@@ -233,4 +252,4 @@
         });
     });
 
-    </script>
+</script>
