@@ -57,24 +57,31 @@ namespace Talent.Topper.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(CompanyEntity companyEntity)
         {
-            //Use Namespace called :  System.IO  
-            string FileName = Path.GetFileNameWithoutExtension(companyEntity.ImageFile.FileName);
+            string FileName = "";
+            string FileExtension = "";
+            string UploadPath = "";
 
-            //To Get File Extension  
-            string FileExtension = Path.GetExtension(companyEntity.ImageFile.FileName);
+            if (companyEntity.ImageFile != null)
+            {
+                //Use Namespace called :  System.IO  
+                FileName = Path.GetFileNameWithoutExtension(companyEntity.ImageFile.FileName);
 
-            //Add Current Date To Attached File Name  
-            FileName = DateTime.Now.ToString("MM-dd-yyyy-HH-mm-ss") + "-" + FileName.Trim() + FileExtension;
+                //To Get File Extension  
+                FileExtension = Path.GetExtension(companyEntity.ImageFile.FileName);
 
-            //Get Upload path from Web.Config file AppSettings.  
-            //string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
-            string UploadPath = Server.MapPath("~/CompanyLogo/");
+                //Add Current Date To Attached File Name  
+                FileName = DateTime.Now.ToString("MM-dd-yyyy-HH-mm-ss") + "-" + FileName.Trim() + FileExtension;
 
-            //Its Create complete path to store in server.  
-            companyEntity.LogoPath = UploadPath + FileName;
+                //Get Upload path from Web.Config file AppSettings.  
+                //string UploadPath = ConfigurationManager.AppSettings["UserImagePath"].ToString();
+                UploadPath = Server.MapPath("~/CompanyLogo/");
 
-            //To copy and save file into server.  
-            companyEntity.ImageFile.SaveAs(companyEntity.LogoPath);
+                //Its Create complete path to store in server.  
+                companyEntity.LogoPath = UploadPath + FileName;
+
+                //To copy and save file into server.  
+                companyEntity.ImageFile.SaveAs(companyEntity.LogoPath);
+            }
 
 
 
