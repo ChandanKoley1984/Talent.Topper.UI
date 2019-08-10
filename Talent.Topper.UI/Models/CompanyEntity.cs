@@ -19,6 +19,7 @@ namespace Talent.Topper.UI.Models
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedBy { get; set; }
+        public Nullable<bool> Active_Status { get; set; }
     }
     public class CompanyEntity
     {
